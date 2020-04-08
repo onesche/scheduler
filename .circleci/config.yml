@@ -55,8 +55,7 @@ jobs:
           name: Deploy to GAS.
           command: |
             echo $CLASPRC_JSON > ~/.clasprc.json
-            npm install @google/clasp -D
-            clasp push
+            npx @google/clasp push
 workflows:
   version: 2
   build_deploy:
