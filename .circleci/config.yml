@@ -55,14 +55,16 @@ jobs:
           name: Deploy to GAS.
           command: |
             echo "${CLASPRC_JSON}" > ~/.clasprc.json
+            echo "${CLASPRC_JSON}"
             npx @google/clasp push
 workflows:
   version: 2
   build_deploy:
     jobs:
-      - build
+      - build:
+          context: scheduler
       - deploy:
-          context: Onesche
+          context: scheduler
           requires:
             - build
           filters:
