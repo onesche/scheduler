@@ -53,7 +53,9 @@ jobs:
           <<: *node_modules_cache_params
       - run:
           name: Deploy to GAS.
-          command: ./scripts/deploy-ci.sh
+          command: |
+            chmod +x ./scripts/deploy-ci.sh
+            ./scripts/deploy-ci.sh
 workflows:
   version: 2
   build_deploy:
