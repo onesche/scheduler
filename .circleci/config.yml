@@ -32,7 +32,7 @@ jobs:
           <<: *node_modules_cache_params
       - run:
           name: Run Lint.
-          command: npm run lint
+          command: npx lint
       - run:
           name: Run Test.
           command: npm run test
