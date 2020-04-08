@@ -55,8 +55,7 @@ jobs:
           name: Deploy to GAS.
           command: |
             echo "${CLASPRC_JSON}" > ~/.clasprc.json
-            echo "${TEST_ENV}"
-            npx @google/clasp push
+            npm run deploy
 workflows:
   version: 2
   build_deploy:
