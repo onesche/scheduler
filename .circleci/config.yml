@@ -3,7 +3,7 @@ version: 2
 references:
   container_config: &container_config
     docker:
-      - image: circleci/node:8.9.4
+      - image: circleci/node:12.14.1
     working_directory: /home/circleci/project
 
   node_modules_cache_params: &node_modules_cache_params
@@ -42,12 +42,15 @@ jobs:
           command: |
             echo "Node $(node -v)"
             echo "Npm $(npm -v)"
-      - run:
-          name: Delete node_modules.
-          command: rm -rf ./node_modules
+      - restore_cache:
+          name: Restore Cache.
+          <<: *node_modules_cache_params
       - run:
           name: Set up to gas clasp environment.
           command: npm install
+      - save_cache:
+          name: Saving Cache.
+          <<: *node_modules_cache_params
       - run:
           name: Deploy to GAS.
           command: |
